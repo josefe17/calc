@@ -17,6 +17,11 @@
 			$("#pantalla").val(op*op);
 		});
 
+		$("#cubo").on("click", function(){
+			var op = parseFloat($("#pantalla").val());			
+			$("#pantalla").val(op*op*op);
+		});
+
 		$("#raiz").on("click", function(){
 			var op = parseFloat($("#pantalla").val());
 			$("#pantalla").val(Math.sqrt(op));
@@ -155,6 +160,7 @@
 		</tr><tr>
 		<td><button id="cuadrado">x²</button></td>
 		<td><button id="potencia">^</button></td>
+		<td><button id="cubo">^3</button></td>
 		</tr><tr>
 		<td><button id="inverso">1/x</button></td>
 		<td><button id="pentera">parte_entera(x)</button></td>
