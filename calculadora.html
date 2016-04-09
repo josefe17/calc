@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">	
+	<title>CORE2016 P3</title>	
+	<link rel="stylesheet" type="text/css" href="movil.css" media="(max-width: 480px)"/>
+	<link rel="stylesheet" type="text/css" href="normal.css" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+		var value=0;
+		var operand="";
+
+		$("#cuadrado").on("click", function(){
+			var op = parseFloat($("#pantalla").val());			
+			$("#pantalla").val(op*op);
+		});
+
+		$("#raiz").on("click", function(){
+			var op = parseFloat($("#pantalla").val());
+			$("#pantalla").val(Math.sqrt(op));
+		});
+
+		$("#potencia2").on("click", function(){
+			var op = parseFloat($("#pantalla").val());
+			$("#pantalla").val(Math.pow(2,op));
+		});
+
+		$("#inverso").on("click", function(){
+			var op = parseFloat($("#pantalla").val());
+			$("#pantalla").val(1/op);
+		});
+
+		$("#factorial").on("click", function(){
+			var op =parseInt($("#pantalla").val());
+			if(op<0) $("#pantalla").val("Error");
+			else{
+			var fact =1;
+			for(var i=1; i<=op; i++){
+				fact*=i;	
+			}
+			$("#pantalla").val(fact);
+			}
+		});
+
+		$("#pentera").on("click", function(){
+			var op = parseFloat($("#pantalla").val());
+			$("#pantalla").val(Math.round(op));
+		});
+
+		$("#suma").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));	
+			$("#pantalla").val(value);			
+			operand="suma";
+		});
+
+		$("#resta").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));
+			$("#pantalla").val(value);				
+			operand="resta";
+		});
+
+		$("#multiplica").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));	
+			$("#pantalla").val(value);			
+			operand="multiplica";
+		});
+
+		$("#divide").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));	
+			$("#pantalla").val(value);			
+			operand="divide";
+		});	
+
+		$("#potencia").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));	
+			$("#pantalla").val(value);			
+			operand="potencia";
+		});	
+
+		$("#yraiz").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));	
+			$("#pantalla").val(value);			
+			operand="raiz";
+		});	
+
+		$("#igual").on("click", function(){
+			do_last(operand, parseFloat($("#pantalla").val()));	
+			$("#pantalla").val(value);		
+			operand="";
+			value=0;
+		});	
+
+		function do_last(operand, valor){
+			if (operand==="suma"){
+				value+=valor;
+			}
+			if(operand==="resta"){
+				value-=valor;
+			}
+			if(operand==="multiplica"){
+				value*=valor;
+			}
+			if(operand==="divide"){
+				value/=valor;				
+			}
+			if (operand==="potencia") {
+				value=Math.pow(value, valor);
+			}	
+			if (operand==="raiz") {
+				value=Math.pow(value, 1/valor);
+			}
+			if(operand===""){
+				value=valor;
+			}
+			
+		}
+
+		$("#pantalla").on("click", function(){
+			var op = parseFloat($("#pantalla").val());
+			$("#pantalla").val("");
+		});
+
+
+		$("#limpiar").on("click", function(){
+			value=0;
+			operand="";
+			$("#pantalla").val("");
+		});
+
+
+	});
+
+	</script>
+</head>
+<body>
+<header>
+	<p class="signature">© José Fernando Gómez Díaz</p>
+	<p class="signature">josefernando.gomez.diaz@alumnos.upm.es</p>
+	<p class="signature" id="fecha">
+		<script type="text/javascript">
+			$("#fecha").html(new Date());
+		</script></p>
+	<h1>CALCULADORA</h1>
+</header>
+<article id="main">
+	<div>Número: <input type="text" id="pantalla"> </div>
+	<table id="botonera">
+		<tr>
+		<td><button id="suma">+</button></td>
+		<td><button id="resta">-</button></td>
+		<td><button id="multiplica">×</button></td>
+		<td><button id="divide">÷</button></td>
+		</tr><tr>
+		<td><button id="cuadrado">x²</button></td>
+		<td><button id="potencia">^</button></td>
+		</tr><tr>
+		<td><button id="inverso">1/x</button></td>
+		<td><button id="pentera">parte_entera(x)</button></td>
+		<td><button id="potencia2">2^x</button></td>
+		<td><button id="factorial">x!</button></td>
+		</tr><tr>
+		<td><button id="igual">=</button></td>
+		<td><button id="limpiar">Limpiar</button></td>
+		</tr>
+	</div>
+</article>
+
+</body>
+</html>
